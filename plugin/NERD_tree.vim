@@ -3305,6 +3305,8 @@ function! s:closeTree()
         call s:exec(s:getTreeWinNum() . " wincmd w")
         close
         call s:exec(bufwinnr(bufnr) . " wincmd w")
+        windo doautocmd WinLeave
+        doautocmd WinEnter
     else
         close
     endif
