@@ -3305,7 +3305,9 @@ function! s:closeTree()
         call s:exec(s:getTreeWinNum() . " wincmd w")
         close
         call s:exec(bufwinnr(bufnr) . " wincmd w")
+        let landing_win = winnr()
         windo doautocmd WinLeave
+        execute landing_win . ' wincmd w'
         doautocmd WinEnter
     else
         close
